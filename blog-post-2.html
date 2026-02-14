@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO METADATA -->
+    <title>The ROI of Speed: Calculating the Cost of Delay | IMPULSE Finance</title>
+    <meta name="description" content="Every day your website isn't live, you are losing money. We break down the financial math of rapid deployment versus traditional timelines.">
+    <meta name="keywords" content="Cost of Delay, Website ROI, Speed to Market, MVP Strategy, Digital Assets, Business Growth">
+    <meta name="author" content="IMPULSE">
+    <link rel="canonical" href="https://impulse.agency/blog-post-2.html">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The ROI of Speed: Calculating the Cost of Delay">
+    <meta property="og:description" content="Perfection is expensive. Speed is profitable. Read the math behind the timeline.">
+    <meta property="og:url" content="https://impulse.agency/blog-post-2.html">
+    <meta property="og:image" content="https://impulse.agency/assets/post2-og.jpg">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- SCHEMA MARKUP -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://impulse.agency/blog-post-2.html"
+      },
+      "headline": "The ROI of Speed: Calculating the Cost of Delay",
+      "description": "Every day your website isn't live, you are losing money. We break down the financial math.",
+      "image": "https://impulse.agency/assets/post2-hero.jpg",  
+      "author": {
+        "@type": "Organization",
+        "name": "IMPULSE"
+      },  
+      "publisher": {
+        "@type": "Organization",
+        "name": "IMPULSE",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://impulse.agency/assets/logo.png"
+        }
+      },
+      "datePublished": "2026-02-14",
+      "dateModified": "2026-02-14"
+    }
+    </script>
+
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --blue: #0066FF;
+            --gold: #D4AF37;
+            --light-gray: #F5F5F5;
+            --medium-gray: #666666;
+            
+            /* Claymorphism */
+            --clay-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05), -10px -10px 20px rgba(255, 255, 255, 0.8);
+            --clay-inner: inset 4px 4px 8px rgba(255, 255, 255, 0.8), inset -4px -4px 8px rgba(0, 0, 0, 0.02);
+            --glow: 0 0 15px rgba(0, 102, 255, 0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--light-gray); 
+            color: var(--black); 
+            line-height: 1.8;
+        }
+
+        h1, h2, h3, .logo-font { 
+            font-family: 'Montserrat', sans-serif; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: -0.02em;
+        }
+
+        /* --- HEADER --- */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(245, 245, 245, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--black);
+        }
+
+        .back-link {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--medium-gray);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+        }
+        .back-link:hover { color: var(--blue); }
+
+        /* --- ARTICLE LAYOUT --- */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 5% 100px;
+        }
+
+        /* Hero Block - MATCHING SCREENSHOT */
+        .article-hero-block {
+            background: var(--black);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--clay-shadow);
+            height: 250px;
+        }
+
+        .hero-block-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .hero-cat {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .article-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .article-meta {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* Typography */
+        .content {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .content p {
+            margin-bottom: 25px;
+        }
+
+        .content strong {
+            color: var(--black);
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: var(--white);
+            border-left: 4px solid var(--blue);
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 40px 0;
+            font-style: italic;
+            box-shadow: var(--clay-shadow);
+        }
+
+        /* --- BOTTOM NAV --- */
+        .bottom-nav {
+            padding: 40px 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            margin: 0 5% 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .nav-item {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--medium-gray);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .nav-item:hover, .nav-item.active { color: var(--blue); }
+        .nav-item.active { text-shadow: var(--glow); }
+
+        /* --- CTA --- */
+        .cta-box {
+            background: var(--black);
+            color: var(--white);
+            padding: 50px 30px;
+            border-radius: 30px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .btn {
+            background: var(--blue);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        footer { text-align: center; font-size: 0.8rem; margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header class="sticky-header">
+        <a href="index.html" class="header-logo">
+            <img src="assets/logo.png" alt="IMPULSE" style="height: 28px; width: auto;">
+            <span class="logo-font" style="font-size: 1.1rem;">IMPULSE</span>
+        </a>
+        <a href="blog.html" class="back-link">
+            <i data-lucide="arrow-left" size="16"></i> Back
+        </a>
+    </header>
+
+    <article class="article-container">
+        
+        <!-- HERO BLOCK (Matching Screenshot) -->
+        <div class="article-hero-block">
+            <div class="hero-block-text">
+                DIGITAL<br>ASSETS
+            </div>
+        </div>
+
+        <span class="hero-cat">FINANCE • STRATEGY</span>
+        <h1 class="article-title">The ROI of Speed: Calculating the Cost of Delay</h1>
+        
+        <div class="article-meta">
+            <span>Feb 14, 2026</span>
+            <span>•</span>
+            <span>6 Min Read</span>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <p><strong>There is a hidden tax you are paying right now. It is called the "Perfection Tax."</strong></p>
+            
+            <p>We see it every day. A business owner delays their launch by three months because they want to "tweak the copy" or "find a better stock image." It feels like due diligence. In reality, it is financial negligence.</p>
+
+            <h2>The Mathematics of Waiting</h2>
+            <p>Let's do the math. Assume your new website is conservatively projected to generate $10,000 per month in new leads or sales.</p>
+            
+            <p>If you delay your launch by three months to "get it perfect," you haven't just lost time. <strong>You have lost $30,000.</strong></p>
+
+            <p>Is that slightly better stock image worth $30,000? Is that final round of copy editing worth $30,000? The answer is almost always no.</p>
+
+            <div class="highlight-box">
+                "Imperfect action beats perfect inaction every single time. The market rewards momentum, not hesitation."
+            </div>
+
+            <h2>The First-Mover Advantage</h2>
+            <p>In the digital economy, Google rewards age. The sooner your domain is live, indexed, and generating traffic, the sooner you build authority.</p>
+            
+            <p>Every day you sit in "Development Hell," your competitors are:
+            <br>1. Ranking for your keywords.
+            <br>2. Capturing your leads.
+            <br>3. Building trust with your audience.</p>
+
+            <h2>MVP: Minimum Viable Profit</h2>
+            <p>At IMPULSE, we preach the <strong>MVP</strong> model. Not Minimum Viable Product, but Minimum Viable <em>Profit</em>.</p>
+            
+            <p>Launch the core system now. Get the cash flow moving. Then, use that revenue to fund the "Version 2.0" upgrades later. A website is a living digital asset, not a stone monument. It should evolve with your revenue.</p>
+
+            <h2>Stop Calculating. Start Building.</h2>
+            <p>The cost of delay is real. It's time to stop paying the tax.</p>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-box">
+            <h2 class="logo-font" style="margin-bottom: 15px;">Stop Losing Revenue</h2>
+            <p>Launch your system in 7 days or less.</p>
+            <a href="https://wa.me/2348163274578" class="btn">Calculate Your ROI</a>
+        </div>
+
+    </article>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">HOME</a>
+        <a href="index.html#services" class="nav-item">SERVICES</a>
+        <a href="projects.html" class="nav-item">PORTFOLIO</a>
+        <a href="blog.html" class="nav-item active">BLOG</a>
+    </nav>
+
+    <!-- FOOTER -->
+    <footer>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+            <a href="#" style="color: black;"><i data-lucide="instagram"></i></a>
+            <a href="#" style="color: black;"><i data-lucide="twitter"></i></a>
+        </div>
+        &copy; 2026 IMPULSE.
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPULSE | Moving Businesses Forward</title>
+    <meta name="description" content="No-Code Web Agency. We build authority websites in days, not months.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --blue: #0066FF;
+            --gold: #D4AF37;
+            --light-gray: #F5F5F5;
+            --dark-gray: #1A1A1A;
+            --medium-gray: #666666;
+            
+            /* Claymorphism */
+            --clay-bg: #FFFFFF;
+            --clay-shadow: 12px 12px 24px rgba(0, 0, 0, 0.08), -12px -12px 24px rgba(255, 255, 255, 0.9);
+            --clay-inner: inset 4px 4px 8px rgba(255, 255, 255, 0.8), inset -4px -4px 8px rgba(0, 0, 0, 0.02);
+            --clay-btn: 6px 6px 12px rgba(0, 0, 0, 0.1), -6px -6px 12px rgba(255, 255, 255, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--light-gray); 
+            color: var(--black); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-font { 
+            font-family: 'Montserrat', sans-serif; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: -0.02em;
+        }
+
+        /* --- ENTRANCE ANIMATION --- */
+        #curtain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transform-origin: top left;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), border-radius 1.2s ease;
+        }
+
+        body.loaded #curtain {
+            transform: scale(0);
+            border-bottom-right-radius: 100%;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(245, 245, 245, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0; /* Hidden initially, shown after curtain */
+            transition: opacity 0.5s ease 1s;
+        }
+        
+        body.loaded .logo { opacity: 1; }
+
+        .hamburger {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--light-gray);
+            box-shadow: var(--clay-btn);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s;
+        }
+        .hamburger:active { transform: scale(0.95); box-shadow: inset 4px 4px 8px rgba(0,0,0,0.1); }
+
+        /* --- MOBILE MENU --- */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--white);
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        #mobile-menu.open { right: 0; }
+
+        .menu-link {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        
+        .menu-link:hover { color: var(--blue); }
+
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 5%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* --- LAYOUT UTILS --- */
+        section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+        /* --- COMPONENTS --- */
+        .btn {
+            padding: 15px 35px;
+            background: var(--blue);
+            color: var(--white);
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { transform: translateY(-3px); }
+
+        .clay-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: var(--clay-shadow);
+            position: relative;
+        }
+        .clay-card::before {
+            content: ''; position: absolute; inset: 0; border-radius: 30px;
+            box-shadow: var(--clay-inner); pointer-events: none;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 20px; }
+        .hero h2 { font-size: 1.1rem; font-family: 'Inter', sans-serif; color: var(--medium-gray); font-weight: 400; max-width: 600px; margin-bottom: 40px; }
+
+        /* --- PAIN & SOLUTION (ABOUT) --- */
+        .pain-point { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+        .pain-point i { color: #FF4444; flex-shrink: 0; margin-top: 5px; }
+        
+        .solution-block { 
+            background: var(--black); 
+            color: var(--white); 
+            padding: 40px; 
+            border-radius: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .about-blurb {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+
+        /* --- SERVICES SLIDER --- */
+        .scroll-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 5px 40px 5px; /* Bottom padding for shadow visibility */
+            scroll-snap-type: x mandatory;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scroll-container::-webkit-scrollbar { display: none; }
+        
+        .service-card {
+            min-width: 300px;
+            max-width: 400px;
+            scroll-snap-align: center;
+            flex-shrink: 0;
+        }
+
+        /* --- MARQUEE --- */
+        .marquee-wrapper {
+            background: var(--black);
+            color: var(--white);
+            padding: 30px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        
+        .marquee-item {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-right: 50px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- FOUNDER --- */
+        .founder-img {
+            width: 100%;
+            height: 400px;
+            background: #ddd; /* Placeholder */
+            border-radius: 30px;
+            box-shadow: var(--clay-inner);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-gray);
+            font-weight: 600;
+        }
+
+        /* --- FORM --- */
+        input, textarea {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: none;
+            background: var(--light-gray);
+            border-radius: 15px;
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.05);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus { outline: 2px solid var(--blue); }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENTRANCE CURTAIN -->
+    <div id="curtain">
+        <h1 style="font-size: 4rem;">IMPULSE</h1>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+           <div style="display: flex; align-items: center; gap: 10px;">
+    <img src="assets/impulse-Logo.png" alt="Logo" style="height: 30px; width: auto;">
+    <span style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;">IMPULSE</span>
+</div>
+        </div>
+        <button class="hamburger" onclick="toggleMenu()">
+            <i data-lucide="menu"></i>
+        </button>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu">
+        <button class="close-menu" onclick="toggleMenu()">
+            <i data-lucide="x"></i>
+        </button>
+        <a href="#about" class="menu-link" onclick="toggleMenu()">About</a>
+        <a href="#services" class="menu-link" onclick="toggleMenu()">Services</a>
+        <a href="projects.html" class="menu-link">Projects</a>
+        <a href="blog.html" class="menu-link">Blog</a>
+    </div>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Stop waiting.<br>Start moving.</h1>
+            <h2>Professional websites built to move your business forward. Speed. Authority. Results.</h2>
+            <a href="https://wa.me/2348163274578" class="btn">Start a Project</a>
+        </section>
+
+        <!-- PAIN & SOLUTION (About Section) -->
+        <section id="about">
+            <div class="grid-2">
+                <div>
+                    <h2 style="margin-bottom: 30px;">The Problem</h2>
+                    <div class="clay-card">
+                        <div class="pain-point">
+                            <i data-lucide="x-circle"></i>
+                            <p><strong>You are invisible.</strong> Great service, no digital footprint.</p>
+                        </div>
+                        <div class="pain-point">
+                            <i data-lucide="x-circle"></i>
+                            <p><strong>Traditional agencies are slow.</strong> You can't wait 3 months for a launch.</p>
+                        </div>
+                        <div class="pain-point">
+                            <i data-lucide="x-circle"></i>
+                            <p><strong>Tech is overwhelming.</strong> Hosting, DNS, CMS... it's a headache.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-block">
+                    <h2 style="color: var(--blue); margin-bottom: 20px;">Our Solution</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 30px;">We build authority systems that work. Fast. No code. Total control.</p>
+                    <div class="about-blurb">
+                        <strong>ABOUT IMPULSE</strong><br>
+                        We are a No-Code Web Agency dedicated to stripping away the complexity of web development. We believe in momentum. We don't just build websites; we build engines for business growth.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY IMPULSE -->
+        <section>
+            <h2 style="text-align: center; margin-bottom: 40px;">Why Impulse?</h2>
+            <div class="grid-3">
+                <div class="clay-card">
+                    <i data-lucide="zap" color="#0066FF" size="32" style="margin-bottom: 15px;"></i>
+                    <h3>Speed Without Shortcuts</h3>
+                    <p class="mt-2">We deploy in days, not months.</p>
+                </div>
+                <div class="clay-card">
+                    <i data-lucide="target" color="#0066FF" size="32" style="margin-bottom: 15px;"></i>
+                    <h3>Built to Convert</h3>
+                    <p class="mt-2">Every pixel is designed to sell.</p>
+                </div>
+                <div class="clay-card">
+                    <i data-lucide="smile" color="#0066FF" size="32" style="margin-bottom: 15px;"></i>
+                    <h3>No Tech Headaches</h3>
+                    <p class="mt-2">We handle the boring stuff.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT WE DO (Services) -->
+        <section id="services">
+            <h2 style="margin-bottom: 20px;">What We Do</h2>
+            <div class="scroll-container">
+                <!-- Service 1 -->
+                <div class="clay-card service-card">
+                    <h3 style="color: var(--blue);">Web Development</h3>
+                    <p style="margin: 15px 0;">Complete authority websites built on robust No-Code architecture. Fast, secure, and easy to manage.</p>
+                    <ul style="list-style: none; margin-bottom: 20px; font-size: 0.9rem;">
+                        <li>✓ Landing Pages</li>
+                        <li>✓ Multi-page Business Sites</li>
+                        <li>✓ CMS Integration</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="clay-card service-card">
+                    <h3 style="color: var(--blue);">Branding</h3>
+                    <p style="margin: 15px 0;">Visual identities that command respect. We align your look with your ambition.</p>
+                    <ul style="list-style: none; margin-bottom: 20px; font-size: 0.9rem;">
+                        <li>✓ Logo Design</li>
+                        <li>✓ Visual Identity Systems</li>
+                        <li>✓ Brand Guidelines</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <span class="marquee-item">Top Speed: 4 Sites in 7 Days</span>
+                <span class="marquee-item">Top Speed: 4 Sites in 7 Days</span>
+                <span class="marquee-item">Top Speed: 4 Sites in 7 Days</span>
+                <span class="marquee-item">Top Speed: 4 Sites in 7 Days</span>
+                <span class="marquee-item">Top Speed: 4 Sites in 7 Days</span>
+                <span class="marquee-item">Top Speed: 4 Sites in 7 Days</span>
+            </div>
+        </div>
+
+        <!-- CTA & FOUNDER -->
+        <section>
+            <div class="grid-2" style="align-items: center;">
+                <div>
+                    <h1>Ready to move forward?</h1>
+                    <p style="margin: 20px 0; color: var(--medium-gray);">Stop overthinking. Start building momentum. Your competition isn't waiting, and neither should you.</p>
+                    <a href="#inquiry" class="btn">Make Inquiry</a>
+                </div>
+                <!-- FOUNDER -->
+                <div id="founder">
+                    <div class="founder-img">
+    <img src="assets/Impulse-Founder.png" alt="Founder Name" style="width: 100%; height: 100%; object-fit: cover; border-radius: 30px;">
+</div>
+
+                    <div style="margin-top: 20px;">
+                        <h3 class="logo-font">About The Founder</h3>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">
+                            "Ugochukwu C. David (Founder),
+I built my first website when I was 19. It wasn't perfect, but it worked—and that taught me something important: done and live beats perfect and stalled.
+The truth? I'm not a developer. I'm not a designer. I'm a builder who learned to use the right tools—Manus, Claude, Bolt, Lovable, Gemini & ChatGpt—to turn ideas into real websites, fast.
+But here's what I actually care about: sales. I've always been drawn to building sales systems and machines that work while you sleep. The problem? I'm terrible at sales myself. So I did what any logical person would do—I started building websites that sell for you.
+That's the real reason IMPULSE exists. Not just to make websites look good, but to make them work. Every site we build is designed with one goal: turn visitors into customers. Because if your website isn't selling, it's just expensive decoration.
+I'm still learning. Still 19. Still less than a month into this. But I've already proven one thing: you don't need years of experience to build something that drives real results. You just need momentum.
+Your business doesn't have time to wait. Let's build something that sells
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INQUIRY FORM -->
+        <section id="inquiry" style="max-width: 600px;">
+            <div class="clay-card">
+                <h2 style="text-align: center; margin-bottom: 30px;">Make Inquiry</h2>
+                <form name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact">
+                    
+                    <label>Name</label>
+                    <input type="text" name="name" required placeholder="Your Name">
+                    
+                    <label>Email</label>
+                    <input type="email" name="email" required placeholder="your@email.com">
+                    
+                    <label>How can we help?</label>
+                    <textarea name="message" rows="4" required placeholder="Tell us about your project..."></textarea>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Inquire</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3 class="logo-font" style="color: var(--black);">IMPULSE</h3>
+        <p>&copy; 2026 IMPULSE. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Entrance Animation Trigger
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 500); // Short delay before animation starts
+        });
+
+        // Menu Toggle
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
+
+
