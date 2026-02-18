@@ -476,28 +476,64 @@ Your business doesn't have time to wait. Let's build something that sells
             </div>
         </section>
 
-        <!-- INQUIRY FORM -->
-        <section id="inquiry" style="max-width: 600px;">
-            <div class="clay-card">
-                <h2 style="text-align: center; margin-bottom: 30px;">Make Inquiry</h2>
-                <form name="contact" method="POST" data-netlify="true">
-                    <input type="hidden" name="form-name" value="contact">
+        <!-- INQUIRY & FAQ SECTION -->
+        <section id="inquiry" style="max-width: 800px; margin: 0 auto;">
+            
+            <!-- WhatsApp Card -->
+            <div class="clay-card" style="text-align: center; margin-bottom: 60px;">
+                <h2 style="margin-bottom: 20px;">Let's Move Fast</h2>
+                <p style="margin-bottom: 30px; color: var(--medium-gray);">Skip the long forms. Chat directly with our team to get an instant quote.</p>
+                
+                <a href="https://wa.me/qr/ZC5JYO23C4USF1" class="btn" style="background: #25D366; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); display: inline-flex; align-items: center; gap: 10px;">
+                    <i data-lucide="message-circle"></i>
+                    Chat on WhatsApp
+                </a>
+                
+                <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.7;">Typical response time: 10 minutes</p>
+            </div>
+
+            <!-- FAQ Section -->
+            <div style="margin-top: 60px;">
+                <h3 class="logo-font" style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">Common Questions</h3>
+                
+                <div class="clay-card" style="padding: 10px 30px;">
                     
-                    <label>Name</label>
-                    <input type="text" name="name" required placeholder="Your Name">
-                    
-                    <label>Email</label>
-                    <input type="email" name="email" required placeholder="your@email.com">
-                    
-                    <label>How can we help?</label>
-                    <textarea name="message" rows="4" required placeholder="Tell us about your project..."></textarea>
-                    
-                    <button type="submit" class="btn" style="width: 100%;">Inquire</button>
-                </form>
+                    <!-- Q1 -->
+                    <details style="padding: 20px 0; border-bottom: 1px solid #eee; cursor: pointer;">
+                        <summary style="font-weight: 700; font-family: 'Montserrat', sans-serif; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                            How much does it cost to build a site?
+                            <i data-lucide="chevron-down" size="18" color="#0066FF"></i>
+                        </summary>
+                        <p style="margin-top: 15px; color: var(--medium-gray); font-size: 0.95rem;">
+                            Price varies based on complexity. We aim to be the bridge between "cheap DIY" and "expensive agency." We try to be both affordable and fast, so we meet in-between.
+                        </p>
+                    </details>
+
+                    <!-- Q2 -->
+                    <details style="padding: 20px 0; border-bottom: 1px solid #eee; cursor: pointer;">
+                        <summary style="font-weight: 700; font-family: 'Montserrat', sans-serif; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                            What's the conversion rate of your sites?
+                            <i data-lucide="chevron-down" size="18" color="#0066FF"></i>
+                        </summary>
+                        <p style="margin-top: 15px; color: var(--medium-gray); font-size: 0.95rem;">
+                            We build to convert. Every pixel is "placed" with intention—if it doesn't lead to a user taking action (calling you, booking you, buying from you), we don't include it.
+                        </p>
+                    </details>
+
+                    <!-- Q3 -->
+                    <details style="padding: 20px 0; cursor: pointer;">
+                        <summary style="font-weight: 700; font-family: 'Montserrat', sans-serif; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                            Does my business need a site?
+                            <i data-lucide="chevron-down" size="18" color="#0066FF"></i>
+                        </summary>
+                        <p style="margin-top: 15px; color: var(--medium-gray); font-size: 0.95rem;">
+                            Maybe. If you intend to be seen on Google or want to look professional, you need a site. However, depending on your goal (payment systems, just ads), you might not need a full website. <a href="https://wa.me/qr/ZC5JYO23C4USF1" style="color: var(--blue); text-decoration: underline;">Confirm with our customer service</a> to see what fits you.
+                        </p>
+                    </details>
+
+                </div>
             </div>
         </section>
-
-    </main>
 
     <!-- FOOTER -->
     <footer>
