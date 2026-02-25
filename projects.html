@@ -37,7 +37,7 @@
             background: var(--light-gray); 
             color: var(--black); 
             line-height: 1.5;
-            padding-top: 100px; /* Space for fixed header */
+            padding-top: 100px;
         }
 
         h1, h2, h3, .logo-font { 
@@ -83,6 +83,12 @@
             text-decoration: none;
             font-size: 0.8rem;
             text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-small:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
 
         /* --- PROJECT CARDS --- */
@@ -95,15 +101,33 @@
         .project-card {
             background: var(--white);
             border-radius: 20px;
-            padding: 15px;
+            padding: 20px;
             margin-bottom: 30px;
             box-shadow: var(--clay-shadow);
             position: relative;
             transition: transform 0.2s;
         }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+
         .project-card::before {
-            content: ''; position: absolute; inset: 0; border-radius: 20px;
-            box-shadow: var(--clay-inner); pointer-events: none;
+            content: ''; 
+            position: absolute; 
+            inset: 0; 
+            border-radius: 20px;
+            box-shadow: var(--clay-inner); 
+            pointer-events: none;
+        }
+
+        .business-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 12px;
+            color: var(--black);
         }
 
         .project-img {
@@ -118,37 +142,50 @@
             color: var(--medium-gray);
             font-weight: 600;
             overflow: hidden;
-        }
-        
-        /* Placeholder for screenshot */
-        .project-img img {
-            width: 100%; height: 100%; object-fit: cover;
+            object-fit: contain;
         }
 
         .project-meta {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 12px;
         }
 
-        .business-name {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
+        .review {
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+            font-style: italic;
+            line-height: 1.4;
+            flex: 1; /* Takes up remaining space */
+            margin: 0;
         }
 
         .stars {
             color: var(--gold);
             display: flex;
             gap: 2px;
+            flex-shrink: 0; /* Prevents stars from wrapping or shrinking */
+            margin-top: 2px;
         }
 
-        .review {
+        .view-live-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             font-size: 0.9rem;
-            color: var(--medium-gray);
-            font-style: italic;
-            line-height: 1.3;
+            font-weight: 700;
+            color: var(--blue);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2; /* Ensures it's clickable above the clay effect */
+        }
+
+        .view-live-link:hover {
+            color: var(--dark-gray);
+            transform: translateX(4px);
         }
 
         /* --- FAQs --- */
@@ -209,6 +246,10 @@
             transition: 0.3s;
         }
 
+        .nav-link:hover {
+            color: var(--blue);
+        }
+
         .nav-link.active {
             color: var(--blue);
             text-shadow: var(--glow);
@@ -224,8 +265,15 @@
         .social-icon {
             color: var(--black);
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .social-icon:hover { color: var(--blue); transform: scale(1.1); }
+
+        .social-icon:hover { 
+            color: var(--blue); 
+            transform: scale(1.1); 
+        }
 
         footer {
             text-align: center;
@@ -240,11 +288,7 @@
     <!-- HEADER -->
     <header>
         <a href="index.html" class="logo">
-            <div style="display: flex; align-items: center; gap: 5px;">
-    <img src="assets/impulse-Logo.png" alt="Logo" style="height: 50px; width: auto;">
-    <span style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;">IMPULSE</span>
-</div>
-
+            <span style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;">IMPULSE</span>
         </a>
         <a href="https://wa.me/2348163274578" class="btn-small">Start Project</a>
     </header>
@@ -255,74 +299,114 @@
 
         <!-- PROJECT 1 -->
         <div class="project-card">
-    <img src="assets/impulse-project-placeholder-1.png" alt="Immigration Lawyers Project" class="project-img">
-    
-    <div class="project-meta">
-        <span class="business-name">Immigration Lawyers</span>
-        <div class="stars">
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+            <span class="business-name">Immigration Lawyers</span>
+            
+            <img src="assets/impulse-project-placeholder-1.png" alt="Immigration Lawyers Project" class="project-img">
+        
+            <div class="project-meta">
+                <p class="review">"Custom lead machine."</p>
+                <div class="stars">
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                </div>
+            </div>
+
+            <a href="https://mrs-julia-ann-blair.onrender.com" target="_blank" class="view-live-link">
+                View live site <i data-lucide="external-link" size="14"></i>
+            </a>
         </div>
-    </div>
-    <p class="review">"Custom lead machine."</p>
-</div>
- 
+
 
         <!-- PROJECT 2 -->
         <div class="project-card">
-      <img src="assets/impulse-project-placeholder-2.png" alt="Nigerian Restaurant Project" class="project-img">
-    
-    <div class="project-meta">
-        <span class="business-name">Nigerian Restaurant</span>
-        <div class="stars">
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+            <span class="business-name">Nigerian Restaurant</span>
+            
+            <img src="assets/impulse-project-placeholder-2.png" alt="Nigerian Restaurant Project" class="project-img">
+        
+            <div class="project-meta">
+                <p class="review">"Clients find you first and fast."</p>
+                <div class="stars">
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                </div>
+            </div>
+
+            <a href="https://africas-pot.onrender.com" target="_blank" class="view-live-link">
+                View live site <i data-lucide="external-link" size="14"></i>
+            </a>
         </div>
-    </div>
-    <p class="review">"Clients find you first and fast."</p>
-</div>
- 
+
         <!-- PROJECT 3 -->
         <div class="project-card">
+            <span class="business-name">Tattoo Artist</span>
+            
             <img src="assets/impulse-project-placeholder-3.png" alt="Body Cosmetics Artist Project" class="project-img">
-    
-    <div class="project-meta">
-        <span class="business-name">Tattoo Artist</span>
-        <div class="stars">
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-        </div>
-    </div>
-    <p class="review">"Let clients know what you do without you talking, they see your work."</p>
-</div>
- 
+        
+            <div class="project-meta">
+                <p class="review">"Let clients know what you do without you talking, they see your work."</p>
+                <div class="stars">
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                </div>
+            </div>
+
+            <a href="https://jen-lee-tattoo.onrender.com" target="_blank" class="view-live-link">
+                View live site <i data-lucide="external-link" size="14"></i>
+            </a>
+        </div> 
 
         <!-- PROJECT 4 -->
         <div class="project-card">
+            <span class="business-name">Shoffol managers</span>
+            
             <img src="assets/impulse-project-placeholder-4.png" alt="Bureau de Change Project" class="project-img">
-    
-    <div class="project-meta">
-        <span class="business-name">Shoffol managers</span>
-        <div class="stars">
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
-            <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+        
+            <div class="project-meta">
+                <p class="review">"Your sites can handle a portion of the business process."</p>
+                <div class="stars">
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                </div>
+            </div>
+
+            <a href="https://shoffol-managers.onrender.com" target="_blank" class="view-live-link">
+                View live site <i data-lucide="external-link" size="14"></i>
+            </a>
         </div>
-    </div>
-    <p class="review">"Your sites can handle a portion of the business process."</p>
-</div>
- 
+
+        <!-- PROJECT 5 -->
+        <div class="project-card">
+            <span class="business-name">UMS</span>
+            
+            <img src="assets/impulse-project-placeholder-5.png" alt="UMS Project" class="project-img">
+        
+            <div class="project-meta">
+                <p class="review">"Let's make something nice for your business."</p>
+                <div class="stars">
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                    <i data-lucide="star" size="14" fill="#D4AF37" stroke="none"></i>
+                </div>
+            </div>
+
+            <a href="https://ums-e76w.onrender.com" target="_blank" class="view-live-link">
+                View live site <i data-lucide="external-link" size="14"></i>
+            </a>
+        </div>
 
         <!-- FAQs -->
         <div class="faq-section">
@@ -377,7 +461,7 @@
         <!-- SOCIALS & FOOTER -->
         <div class="socials">
             <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
-            <a href="#" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a> <!-- Simple Music Note/TikTok rep -->
+            <a href="#" class="social-icon"><i data-lucide="music"></i></a>
         </div>
 
         <footer>
